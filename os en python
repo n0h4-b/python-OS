@@ -1,0 +1,70 @@
+def systeme_fichiers():
+    fichiers = ['exemple.txt']
+
+    def afficher_fichiers():
+        print("\033c", end="")
+        print("Fichiers :")
+        print("===========================")
+        if fichiers:
+            for f in fichiers:
+                print(f"-", f)
+        else:
+            print("Aucun fichier enregistré.")
+    def ajouter_fichier():
+        nouveau_fichier = input("Entrez le nom du fichier à ajouter : ")
+        if nouveau_fichier:
+            fichiers.append(nouveau_fichier)
+            print(f"'{nouveau_fichier}' enregistré.")
+        else:
+            print("Nom de fichier vide, opération annulée.")
+
+    def supprimer_fichier():
+        nom_fichier = input("Entrez le nom du fichier à supprimer : ")
+        if nom_fichier in fichiers:
+            fichiers.remove(nom_fichier)
+            print(f"'{nom_fichier}' supprimé de la liste.")
+        else:
+            print(f"'{nom_fichier}' n'est pas connu.")
+
+    continuer = True
+    while continuer:
+        print("\nCommandes :")
+        print("[1] Ajouter un fichier")
+        print("[2] Supprimer un fichier")
+        print("[3] Afficher la liste des fichiers")
+        print("[0] Retour au menu principal")
+        choix = input("Entrez votre choix : ")
+
+        if choix == "1":
+            ajouter_fichier()
+        elif choix == "2":
+            supprimer_fichier()
+        elif choix == "3":
+            afficher_fichiers()
+        elif choix == "0":
+            print("Retour au menu principal.")
+            continuer = False
+        else:
+            print("Choix invalide, veuillez réessayer.")
+
+def afficher_menu():
+    while True:
+        print("===========================")
+        print("     Bienvenue !!!  ")
+        print("===========================")
+        print("[1] Ouvrir le gestionnaire de fichiers")
+        print("[2] Fonctionnalité à venir")
+        print("[0] Relancer le menu")
+        reponse = input("Votre choix : ")
+        print("\033c", end="")
+        if reponse == "1":
+            systeme_fichiers()
+        elif reponse == "2":
+            print("Fonctionnalité à venir !")
+        elif reponse == "0":
+            print("Menu relancé !")
+            continue  # Relance le menu principal
+        else:
+            print("Choix invalide.")
+
+afficher_menu()
